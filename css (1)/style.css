@@ -1,0 +1,71 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+figure {
+  margin: 0;
+  padding: 10px;
+  background-color: #f4f4f4;
+  color: #333333;
+  border: 2px solid #ccc;
+  text-align: center;
+}
+
+/* Xử lý ảnh kích thước lớn thu nhỏ vừa vặn */
+figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media screen and (min-width: 772px) {
+  /* Chuyển div.grid sang 2 cột */
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  figure {
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+  }
+
+  figure:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  figure {
+    border-radius: 0;
+    aspect-ratio: auto;
+  }
+
+  figure:last-child {
+    grid-column: span 1;
+  }
+
+  figure:nth-child(3n) {
+    grid-column: span 2;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Chế độ Dark Mode */
+@media (prefers-color-scheme: dark) {
+  figure {
+    background-color: #1e1e1e;
+    color: #fff8dc;
+    border-color: #000000;
+  }
+}
